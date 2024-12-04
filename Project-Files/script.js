@@ -42,5 +42,19 @@ function calculateDailyWage() {
     }
 }
 
-calculateDailyWage();
+function getWorkingHours(employmentState) {
+    switch (employmentState) {
+        case "FULL_TIME":
+            return 8; // Full-time hours
+        case "PART_TIME":
+            return 4; // Part-time hours
+        default:
+            return 0; // No work
+    }
+}
+
+console.log("Full-Time Hours: " + getWorkingHours("FULL_TIME"));
+console.log("Part-Time Hours: " + getWorkingHours("PART_TIME"));
+console.log("No Work Hours: " + getWorkingHours("NO_TIME"));
+
 
