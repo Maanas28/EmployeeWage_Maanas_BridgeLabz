@@ -104,6 +104,8 @@ function wagesForTwentyDays() {
 
     console.log("\nTotal Working Hours: " + totalWorkingHours);
     console.log("Total Wage Earned: $" + totalWage);
+
+    return {totalWorkingHours, totalWage};
 }
 
 function calculateWagesWithConditions() {
@@ -141,12 +143,27 @@ function calculateWagesWithConditions() {
     console.log("Total Wage Earned: $" + totalWage);
 }
 
+function calculateWagesForAYear(){
+    let yearlyWage = 0;
+    let yearlyWorkingHours = 0;
+    console.log("Printing the wages for a year/12 months: ");
+    for(let month = 1; month <= 12; month++){
+        let {totalWage, totalWorkingHours} = wagesForTwentyDays();
+        yearlyWage += totalWage;
+        yearlyWorkingHours += totalWorkingHours;
+    }
 
-console.log("\nWages for 20 Days:");
-wagesForTwentyDays();
+    console.log("================================================");
+    console.log(`The total wage for the year is ${yearlyWage} and the total working hours for the year is ${yearlyWorkingHours}.`);
+}
 
-console.log("\nWages With Conditions (160 hours or 20 days):");
-calculateWagesWithConditions();
+calculateWagesForAYear();
+
+// console.log("\nWages for 20 Days:");
+// wagesForTwentyDays();
+
+// console.log("\nWages With Conditions (160 hours or 20 days):");
+// calculateWagesWithConditions();
 
 
 // console.log("Full-Time Hours: " + getWorkingHours("FULL_TIME"));
