@@ -25,7 +25,7 @@ This use case create a function which caculates the monthy wages and monthy work
 ### Description: 
 This use case make a function under the provided conditions of working hours or maximum days reached.
 
-### Use Case 6: Store the monthly data of the employee in a data structure for 1 year.
+## Use Case 6: Store the monthly data of the employee in a data structure for 1 year.
 
 ### Description: 
 This use case stores the yearly data of the employee in the array which has a object at every index depcting the month for which we have data, monthly wage, monthly hours worked.
