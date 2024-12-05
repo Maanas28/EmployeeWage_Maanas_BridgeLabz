@@ -2,11 +2,11 @@ function attendanceChecker() {
     var randomValue = Math.random(); // Generate a random number between 0 and 1
     var status = randomValue < 0.5 ? "Absent" : "Present"; // Determine attendance status
 
-    if (status === "Present") {
-        console.log("Employee is Present.");
-    } else {
-        console.log("Employee is Absent.");
-    }
+    // if (status === "Present") {
+    //     console.log("Employee is Present.");
+    // } else {
+    //     console.log("Employee is Absent.");
+    // }
 
     return status;
 }
@@ -55,11 +55,6 @@ function getWorkingHours(employmentState) {
     }
 }
 
-function attendanceChecker() {
-    var randomValue = Math.random(); // Generate a random number between 0 and 1
-    return randomValue < 0.5 ? "Absent" : "Present"; // Determine attendance status
-}
-
 function calculateDailyWage() {
     const HOURLY_WAGE_RATE = 20;
     var randomValue = Math.random();
@@ -89,7 +84,7 @@ function getWorkingHours(employmentState) {
 }
 
 function wagesForTwentyDays() {
-    let totalWage = 0;  
+    let totalWage = 0;
     let totalWorkingHours = 0;
 
     console.log("Day\tStatus\t\tType\t\tHours\tWage");
@@ -111,7 +106,52 @@ function wagesForTwentyDays() {
     console.log("Total Wage Earned: $" + totalWage);
 }
 
+function calculateWagesWithConditions() {
+    const MAX_WORKING_HOURS = 160; // Maximum allowed working hours
+    const MAX_WORKING_DAYS = 20; // Maximum allowed working days
+
+    let totalWage = 0;
+    let totalWorkingHours = 0;
+    let workingDay = 0;
+
+    console.log("Day\tStatus\t\tType\t\tHours\tWage");
+
+    while (totalWorkingHours < MAX_WORKING_HOURS && workingDay < MAX_WORKING_DAYS) {
+        workingDay++; // Increment working day
+        let status = attendanceChecker();
+
+        if (status === "Present") {
+            let { dailyWage, employmentState, workingHours } = calculateDailyWage();
+
+            // Stop if adding working hours exceeds maximum allowed hours
+            if (totalWorkingHours + workingHours > MAX_WORKING_HOURS) {
+                workingHours = MAX_WORKING_HOURS - totalWorkingHours;
+                dailyWage = workingHours * 20; // Recalculate daily wage
+            }
+
+            totalWorkingHours += workingHours; // Update total working hours
+            totalWage += dailyWage; // Update total wage
+
+            console.log(`${workingDay}\t${status}\t${employmentState}\t${workingHours}\t${dailyWage}`);
+        } else {
+            console.log(`${workingDay}\t${status}\t-\t\t0\t0`);
+        }
+    }
+
+    console.log("\nTotal Working Hours: " + totalWorkingHours);
+    console.log("Total Wage Earned: $" + totalWage);
+}
+
+// Test the functions
+console.log("\nWages for 20 Days:");
 wagesForTwentyDays();
+
+console.log("\nWages With Conditions (160 hours or 20 days):");
+calculateWagesWithConditions();
+
+// Test the function
+calculateWagesWithConditions();
+
 
 // console.log("Full-Time Hours: " + getWorkingHours("FULL_TIME"));
 // console.log("Part-Time Hours: " + getWorkingHours("PART_TIME"));
