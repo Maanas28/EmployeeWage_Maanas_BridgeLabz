@@ -123,10 +123,9 @@ function calculateWagesWithConditions() {
         if (status === "Present") {
             let { dailyWage, employmentState, workingHours } = calculateDailyWage();
 
-            // Stop if adding working hours exceeds maximum allowed hours
             if (totalWorkingHours + workingHours > MAX_WORKING_HOURS) {
                 workingHours = MAX_WORKING_HOURS - totalWorkingHours;
-                dailyWage = workingHours * 20; // Recalculate daily wage
+                dailyWage = workingHours * 20;
             }
 
             totalWorkingHours += workingHours; // Update total working hours
@@ -142,14 +141,11 @@ function calculateWagesWithConditions() {
     console.log("Total Wage Earned: $" + totalWage);
 }
 
-// Test the functions
+
 console.log("\nWages for 20 Days:");
 wagesForTwentyDays();
 
 console.log("\nWages With Conditions (160 hours or 20 days):");
-calculateWagesWithConditions();
-
-// Test the function
 calculateWagesWithConditions();
 
 
